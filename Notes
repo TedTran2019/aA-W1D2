@@ -1,0 +1,152 @@
+variables -> hold references to objects
+= does not mutate, merely reassigns
+Think about what cases mutate and what cases don't! 
+If you're passing a reference to an object into a function, then acting 
+upon it by mutating said object, the changes will be visible outside of 
+said function. 
+
+rubycritic + rubocop to test for code quality
+
+However, []= does modify an object.
++= and != are pure syntactic sugar, just know how they work. 
+|| shortcircuits!
+||= for conditional assignment
+Arrays of arrays, been through this! 
+Integer/Float classes are immutable
+Properly setting default values on a Hash! |h, k| h[k] = []
+
+Scope: context in which a variable name can be valid and used 
+New scope level started with a new class, method, or block.
+Global variable: $, file-local global: top level outside everything
+
+DRY: Don't repeat yourself, break duplicated code into methods
+
+Method decomposition and design: methods should be atomic(do 1 thing)
+Do not use global state--> methods should take in something and return something 
+Typically, don't modify arguments. 
+
+Code smells: duplicated code, long methods, too many parameters, data clump, long 
+method chains, indecent exposure, speculative generality(YAGNI u ain't gonna need 
+it), god objects, dead code.
+Take pride in clean code! 1st project did Rubocop but not Rubycritic.
+
+HTML: content/structure, HyperTextMarkupLanguage, closing or self-closing, 
+attributes receive values in double quotes
+CSS: styling
+Frontend: HTML, CSS, Javascript
+
+Tags in HTML: <p>, <h1>, <h2>, etc. 
+<ul>, <ol>: has <li>
+<dl>: has <dd>, <dt> 
+
+link: clickable element that directs browser to another page or area on page, 
+use an anchor tag <a href="link"> to create link. Makes a GET request provided thru 
+the href attribute. To create in page links, precede like "#link" after 
+<a name="link" />
+Images with <img src="" alt=""/>
+<!-- --> HTML comment
+
+VS Code Cheatsheet
+⌘ + / : Toggle line/selection comment
+⌘ + f : Search within file
+⌘ + shift + f : Search within project
+ctrl + shift + k : Delete current line
+⌘ + ctrl + up/down : Move current line up/down
+⌘ + d : Select current word (repeat to select multiples of the same word)
+⌘ + click : Place multiple cursors
+⌘ + shift + d : Duplicate a line
+⌘ + t : Search for file by name within project
+ctrl + g : Go to line number
+⌘ + \ : Toggle tree-view sidebar
+cmd + enter : Add newline after current line
+cmd + g : Find next
+cmd + ] : Indent selection
+cmd + [ : Un-indent selection
+cmd + { : move one tab left
+cmd + } : move one tab right
+cmd + shift + p : Find and run available commands
+In tree view:
+a : Add a file to the current folder
+A : Add a folder
+F2 : Rename a file
+In a .html.erb file:
+er then tab becomes <% %>
+pe then tab becomes <%= %>
+
+Test small! 
+
+== Value equality, on an object returns true if same object, should override
+eql? Hash equality 
+equal? Identity aka pointer equality
+=== Case equality
+
+If you've created a class and wish to use it as a key in a hash, should 
+define #hash and #eql. 
+
+Swapping can't be done in Ruby the pointers way-- simply use the shortcut of 
+x, y = y, x
+
+html:5 -> tab to generate basic HTML page layout in VS Code
+Copy path -> paste in browser
+HTML character codes: parsing characters using a defined character set, for now, 
+deal with said characters by escaping them
+
+usage of tag -> id ="name" to reference.
+
+Learning Goals: how classes interact, require_relative, [], []= methods, 
+workflow for pry that tests small parts, initialize array w/ default value, 
+duck typing to allow diff. classes to interact w/ program
+
+You've been misinformed about Ruby .match the entire time. It only finds 
+the first occurence of a match, not checking if the entire string matches!
+Also, regex only matches strings
+To match an entire string, you'd do something like...
+/\A[0-9]*\z/.match("a1")
+\A = beginning of str 
+\z = end of str
+* = zero or more of previous pattern
+https://regexcrossword.com/
+Learn REGEX.
+
+Made a lot of mistakes on MemoryPuzzle
+1. Use private to organize code
+2. attr_reader so you don't need to use @ every time
+3. Organize code into readable chunks
+4. Know precisely what each function takes/returns
+5. ||= and setting things to false, think about what it's a short for
+Generally ugly code all around here.
+
+In Ruby, for multi-line conditionals, align the arguments. Either put the 
+conditional after the sign on a newline, or use a \. 
+\ are used to escape characters and lines of code as well, allowing for code to
+continue on a newline in Ruby.
+
+Hmm, for projects, skip over putting in attr_reader as a private accessor to
+avoid using @ for instance variables rn. Is it good practice or not? 
+
+However, using private on methods that won't be opened outside the class is 
+non-negotiable and quick to do.
+
+Some people I'm reading are saying private attr_accessors are the best things
+ever, while others are saying it's terrible practice. @ lets you know that 
+whatever you're dealing with comes from within the class. It's useful 
+information and worth writing I guess!
+
+Sudoku: understand factory methods, how classes interact, how to use require_relative, 
+write [] and []=, be able to use pry to test small parts of code
+
+To create private class methods, you do 
+private_class_method :method_name, :method_name
+In method_name, you exclude the self in above
+After that, call said private class method without self or ClassName
+https://stackoverflow.com/questions/4952980/how-to-create-a-private-class-method
+http://phrogz.net/RubyLibs/RubyMethodLookupFlow.pdf
+
+Can you prevent "new" from being called from outside the class?
+Yes you can! Same way as above.
+
+Remember that regex can't match negative numbers unless you include - in 
+beginning!
+
+Maybe a valid? function that returns nil if invalid, and returns the valid and
+changed format input if valid? Would work in an until statement, of course.
